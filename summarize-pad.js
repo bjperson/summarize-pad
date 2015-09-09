@@ -1,3 +1,11 @@
+(function(){
+  var link=document.createElement("link");
+  link.rel='stylesheet';
+  link.type='text/css';
+  link.href="https://raw.githubusercontent.com/bjperson/summarize-pad/master/css/main.css?rand="+(Math.round(Math.random()*1000));
+  document.head.appendChild(link);
+})()
+
 function summarize() {
   
   data = $('iframe').contents().find('iframe').contents();
@@ -43,18 +51,18 @@ function summarize() {
   }
   else {
     top = $('#editbar').outerHeight();
-    $('#editorcontainer').prepend('<div id="padassistant" style="background-color: #fff; border-left: 1px solid #dfdfdf; font-size: 1.5em; height: 100%; overflow: auto; position: absolute; right: 0; top: '+top+'px; width: 30%; z-index: 100;"></div>');
-    $('#editorcontainer').prepend('<div id="openassistant" onclick="javascript:toggleAssistant()" style="background-color: #D9E7F9; border: 1px solid gray; color: #fff; font-size: 2.5em; font-weight: bold; height: 32px; overflow: auto; position: absolute; right: 0; text-align: center; width: 32px; z-index: 101; top: '+top+'px;">@</div>');
+    $('#editorcontainer').prepend('<div id="padassistant" style="top: '+top+'px;"></div>');
+    $('#editorcontainer').prepend('<div id="toggleassistant" onclick="javascript:toggleAssistant()" style="top: '+top+'px;">@</div>');
     
   }
   
   for (item in list) {
     if (list[item].tasks.length > 0) {
-      $('#padassistant').append('<div style="color:#000;background-color:#D9E7F9;padding:0.8em;font-weight:bold;">'+list[item].tasktype+'</div>');
+      $('#padassistant').append('<div class="tasktype">'+list[item].tasktype+'</div>');
       for (task in list[item].tasks) {
         if (list[item].tasks[task].text.match(regflag)) { color = colors[list[item].tasks[task].text.match(regflag)[0]]; }
         else { color = 'gray';}
-        $('#padassistant').append('<div onclick="javascript:goToTask(\''+list[item].tasks[task].top+'\')" style="color:'+color+';border-bottom:1px solid #dfdfdf;padding:0.3em;cursor:pointer;">'+list[item].tasks[task].text+'</div>');
+        $('#padassistant').append('<div class="task" onclick="javascript:goToTask(\''+list[item].tasks[task].top+'\')" style="color:'+color+';">'+list[item].tasks[task].text+'</div>');
       }
     }
   }

@@ -1,0 +1,47 @@
+#padassistant {
+  background-color: #fff;
+  border-left: 1px solid #dfdfdf;
+  font-size: 1.5em;
+  height: 100%;
+  overflow: auto;
+  position: absolute;
+  right: 0;
+  top: '+top+'px;
+  width: 30%;
+  z-index: 100;
+}
+
+#toggleassistant {
+  background-color: #D9E7F9;
+  border: 1px solid gray;
+  color: #fff;
+  font-size: 2.5em;
+  font-weight: bold;
+  height: 32px;
+  overflow: auto;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  width: 32px;
+  z-index: 101;
+  top: '+top+'px;
+}
+
+.tasktype {
+  color:#000;
+  background-color:#D9E7F9;
+  padding:0.8em;
+  font-weight:bold;
+}
+
+.task {
+  border-bottom:1px solid #dfdfdf;
+  padding:0.3em;
+  cursor:pointer;
+}
+
+.task:hover {
+  background-color: #D9E7F9;
+}
+
+

@@ -39,10 +39,36 @@ style.textContent = " \
 }  \
 .task:hover {  \
   background-color: #F2F7F7;  \
+} \
+#help { \
+  padding: 1em; \
+  border-top: 1px solid #dfdfdf; \
+} \
+#help h1 { \
+  font-weight: bold; \
+  margin-bottom: 0.5em; \
 }";
 document.head.appendChild(style);
 
-help = ''
+help = '<div id="help" style="display: none"> \
+  <h1>Aide</h1> \
+  <p> \
+  Une section doit être soulignée, en majuscule et ne doit pas comporter de couleurs d\'auteurs, exemple : \
+  <br /> \
+  <u>SECTION</u><br /> \
+  <br /> \
+  Si une section se termine par ":" les tâches seront comptées et affichées, exemple : \
+<br /><u>SECTION :</u><br /> \
+  <br /> \
+  Si une section ne comporte pas de tâches, elle ne sera pas affichée. \
+  <br /><br /> \
+  </p> \
+  <p>  \
+  Une tâche est un élément de liste à puce de premier niveau avec ou sans couleurs, exemple : \
+  <br /> \
+<ul><li><span style="background-color:#FFC7F1">Tâche</span></li></ul> \
+  </p> \
+</div>';
 
 function summarize() {
   
@@ -108,6 +134,7 @@ function summarize() {
       }
     }
   }
+  $('#padassistant').append('<div style="background-color:#e8e9e9;cursor:pointer;text-align:center;" onclick="javascript:openHelp()">?</div>'+help);
 }
 
 function goToTask(top) { 
@@ -125,6 +152,10 @@ function toggleAssistant() {
   else {
     summarize();
   }
+}
+
+function openHelp() {
+  $('#help').toggle();
 }
 
 summarize();

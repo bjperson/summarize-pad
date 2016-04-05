@@ -1,1 +1,1 @@
-javascript:(function(){%20var%20script=document.createElement("script");script.type='text/javascript';script.src="https://raw.githubusercontent.com/bjperson/summarize-pad/master/summarize-pad.js";document.body.appendChild(script);})()
+javascript:(function(){%20var%20script=document.createElement("script");script.type='text/javascript';script.src="https://bjperson.github.io/summarize-pad/summarize-pad.js";document.body.appendChild(script);})()

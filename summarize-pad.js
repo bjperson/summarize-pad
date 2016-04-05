@@ -162,11 +162,13 @@ function closePA() {
 
 function toggleAssistant() {
   if ($('#padassistant').length === 1) {
+    clearInterval(refresh);
     closePA();
     $(document.getElementsByTagName('iframe')[1]).contents().find('iframe').contents().find('body').css('width', '100%');
   }
   else {
     summarize();
+    refresh = setInterval(summarize, 5000);
   }
 }
 
@@ -175,3 +177,4 @@ function openHelp() {
 }
 
 summarize();
+var refresh = setInterval(summarize, 5000);

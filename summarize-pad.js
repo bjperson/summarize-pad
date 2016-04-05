@@ -1,3 +1,16 @@
+// ==UserScript==
+// @name summarize-pad
+// @namespace https://github.com/bjperson/summarize-pad
+// @author Brice Person
+// @date 09/09/2015
+// @version 1
+// @license AGPL V3; http://en.wikipedia.org/wiki/WTF_Public_License
+// @include https://regardscitoyens.framapad.org/*
+// @include https://pad.lqdn.fr/p/*
+// @compat Firefox, Chrome
+// @description Parse any etherpad content to summarize it with simple rules
+// ==/UserScript==
+
 var style = document.createElement('style');
 style.textContent = " \
 #padassistant {  \
@@ -71,24 +84,26 @@ help = '<div id="help" style="display: none"> \
 </div>';
 
 function summarize() {
-  
-  data = $('iframe').contents().find('iframe').contents();
-  
+
+  $(document.getElementsByTagName('iframe')[1]).contents().find('iframe').contents().find('body').css('width', '69%');
+
+  data = $(document.getElementsByTagName('iframe')[1]).contents().find('iframe').contents();
+
   regtype = '^[A-Z :]{2,}$';
-  
+
   regflag = /\[([^\]]{2,})\]/g;
-  
+
   countflag = ':$';
-  
+
   list = {}
-  
+
   colors = {
     '[URGENT]':'red',
     '[RDV]':'green',
     '[CONF]':'blue',
     '[PARL]':'violet'
   };
-  
+
   $.each($(data).find("div[id*='magicdomid']"), function() {
     that = $(this);
     id = this.id;
@@ -99,7 +114,7 @@ function summarize() {
       }
     }
   });
-  
+
   $.each($(data).find("div[id*='magicdomid']"), function() {
     if (list[this.id] !== undefined) {
       listid = this.id;
@@ -109,9 +124,9 @@ function summarize() {
         list[listid].tasks.push({'id':this.id,'text':$(this).text(),'top':this.getBoundingClientRect().top});
       }
     }
-    
+
   });
-  
+
   if ($('#padassistant').length === 1) {
     $('#padassistant').html('');
   }
@@ -120,7 +135,7 @@ function summarize() {
     $('#editorcontainer').prepend('<div id="padassistant" style="top: '+top+'px;"></div>');
     $('#editorcontainer').prepend('<div id="toggleassistant" title="Open/Close" onclick="javascript:toggleAssistant()" style="top: '+top+'px;">#</div>');
   }
-  
+
   for (item in list) {
     if (list[item].tasks.length > 0) {
       tasktype = list[item].tasktype;
@@ -137,8 +152,8 @@ function summarize() {
   $('#padassistant').append('<div style="background-color:#e8e9e9;cursor:pointer;text-align:center;" onclick="javascript:openHelp()">?</div>'+help);
 }
 
-function goToTask(top) { 
-  $('iframe').contents().find("html, body").animate({ scrollTop: top }, { duration: 'medium', easing: 'swing' });
+function goToTask(top) {
+  $(document.getElementsByTagName('iframe')[1]).contents().find("html, body").animate({ scrollTop: top }, { duration: 'medium', easing: 'swing' });
 }
 
 function closePA() {
@@ -148,6 +163,7 @@ function closePA() {
 function toggleAssistant() {
   if ($('#padassistant').length === 1) {
     closePA();
+    $(document.getElementsByTagName('iframe')[1]).contents().find('iframe').contents().find('body').css('width', '100%');
   }
   else {
     summarize();

@@ -84,10 +84,14 @@ help = '<div id="help" style="display: none"> \
 </div>';
 
 function summarize() {
+  var isLite = !($(".EtherpadLink").length);
+  var data;
 
-  $(document.getElementsByTagName('iframe')[1]).contents().find('iframe').contents().find('body').css('width', '69%');
-
-  data = $(document.getElementsByTagName('iframe')[1]).contents().find('iframe').contents();
+  if (isLite) {
+    data = $('iframe').contents().find('iframe').contents();
+  } else {
+    data = $(document.getElementsByTagName('iframe')[1]).contents().find('iframe').contents();
+  }
 
   regtype = '^[A-Z :]{2,}$';
 

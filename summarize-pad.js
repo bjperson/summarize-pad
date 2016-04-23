@@ -11,7 +11,7 @@
 // @description Parse any etherpad content to summarize it with simple rules
 // ==/UserScript==
 
-(function() {
+var summarizePad = (function() {
   var style = document.createElement('style');
 
   style.textContent = " \
@@ -99,7 +99,7 @@
   };
 
   function getMainIframe() {
-    return isLite ? $('iframe').contents() : $(document.getElementsByTagName('iframe')[1]).contents();
+    return isLite ? $($('iframe')[0]).contents() : $(document.getElementsByTagName('iframe')[1]).contents();
   }
 
   function summarize() {
@@ -115,6 +115,7 @@
       if(text.match(regtype)) {
         if (that.contents().find('u').length === 1) {
           list[id] = {'tasktype':text, 'tasks':[]}
+          console.log('TASKTYPE[' + id + ']: ' + text);
         }
       }
     });
@@ -126,6 +127,7 @@
       if (typeof listid != 'undefined') {
         if ($(this).find('ul').hasClass('list-bullet1')) {
           list[listid].tasks.push({'id':this.id,'text':$(this).text(),'top':this.getBoundingClientRect().top});
+          console.log('TASKTYPE[' + listid + ']: ' + $(this).text() + ' @' + this.getBoundingClientRect().top);
         }
       }
 
@@ -137,7 +139,7 @@
     else {
       top = $('#editbar').outerHeight();
       $('#editorcontainer').prepend('<div id="padassistant" style="top: '+top+'px;"></div>');
-      $('#editorcontainer').prepend('<div id="toggleassistant" title="Open/Close" onclick="javascript:toggleAssistant()" style="top: '+top+'px;">#</div>');
+      $('#editorcontainer').prepend('<div id="toggleassistant" title="Open/Close" onclick="javascript:summarizePad.toggleAssistant()" style="top: '+top+'px;">#</div>');
     }
 
     for (item in list) {
@@ -151,15 +153,15 @@
 
           if (text.match(regflag)) { color = colors[text.match(regflag)[0]]; }
           else { color = 'gray';}
-          $('#padassistant').append('<div class="task" onclick="javascript:goToTask(\''+list[item].tasks[task].top+'\')" style="color:'+color+';">'+text+'</div>');
+          $('#padassistant').append('<div class="task" onclick="javascript:summarizePad.goToTask(\''+list[item].tasks[task].top+'\')" style="color:'+color+';">'+text+'</div>');
         }
       }
     }
-    $('#padassistant').append('<div style="background-color:#e8e9e9;cursor:pointer;text-align:center;" onclick="javascript:openHelp()">?</div>'+help);
+    $('#padassistant').append('<div style="background-color:#e8e9e9;cursor:pointer;text-align:center;" onclick="javascript:summarizePad.openHelp()">?</div>'+help);
   }
 
   function goToTask(top) {
-    getMainIframe.contents().find("html, body").animate({ scrollTop: top }, { duration: 'medium', easing: 'swing' });
+    getMainIframe().find("html, body").animate({ scrollTop: top }, { duration: 'medium', easing: 'swing' });
   }
 
   function closePA() {
@@ -170,7 +172,7 @@
     if ($('#padassistant').length === 1) {
       clearInterval(refresh);
       closePA();
-      getMainIframe.find('iframe').contents().find('body').css('width', '100%');
+      getMainIframe().find('iframe').contents().find('body').css('width', '100%');
     }
     else {
       summarize();
@@ -184,4 +186,11 @@
 
   summarize();
   var refresh = setInterval(summarize, 5000);
+
+  return {
+    goToTask: goToTask,
+    closePA: closePA,
+    openHelp: openHelp,
+    toggleAssistant: toggleAssistant
+  };
 }());

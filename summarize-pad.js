@@ -99,7 +99,7 @@ var summarizePad = (function() {
   };
 
   function getMainIframe() {
-    return isLite ? $($('iframe')[0]).contents() : $(document.getElementsByTagName('iframe')[1]).contents();
+    return isLite ? $('iframe').contents() : $(document.getElementsByTagName('iframe')[1]).contents();
   }
 
   function summarize() {
@@ -115,7 +115,6 @@ var summarizePad = (function() {
       if(text.match(regtype)) {
         if (that.contents().find('u').length === 1) {
           list[id] = {'tasktype':text, 'tasks':[]}
-          console.log('TASKTYPE[' + id + ']: ' + text);
         }
       }
     });
@@ -127,7 +126,6 @@ var summarizePad = (function() {
       if (typeof listid != 'undefined') {
         if ($(this).find('ul').hasClass('list-bullet1')) {
           list[listid].tasks.push({'id':this.id,'text':$(this).text(),'top':this.getBoundingClientRect().top});
-          console.log('TASKTYPE[' + listid + ']: ' + $(this).text() + ' @' + this.getBoundingClientRect().top);
         }
       }
 

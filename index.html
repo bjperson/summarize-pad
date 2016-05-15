@@ -1,0 +1,23 @@
+<html>
+<title>Summarize-pad</title>
+<style>
+body{
+    margin: auto;
+    text-align: center;
+}
+</style>
+<body>
+<h1>Install Summarize-pad</h1>
+
+<p>Glissez-collez l'image ci-dessous dans votre barre de favoris<br/>
+Drag &amp; drop image below into your bookmark bar</p>
+
+<p style="text-align:center"><a id="bookmarklet" href=""><img src="http://www.yourpart.eu/static/custom/img/etherpad_light.png" alt="Summarize-pad"/></a></p>
+</body>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var bookmarkhref = "javascript:(function(){%20var%20script=document.createElement('script');script.type='text/javascript';script.src='" + window.location.href.replace(/\/?(index.html)?$/, '') + "/summarize-pad/summarize-pad.js';document.body.appendChild(script);})()";
+  document.getElementById("bookmarklet").href = bookmarkhref;
+});
+</script>
+</html>

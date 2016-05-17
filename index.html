@@ -16,8 +16,7 @@ Drag &amp; drop image below into your bookmark bar</p>
 </body>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  var bookmarkhref = "javascript:(function(){%20var%20script=document.createElement('script');script.type='text/javascript';script.src='" + window.location.href.replace(/\/?(index.html)?$/, '') + "/summarize-pad.js';document.body.appendChild(script);})()";
-  document.getElementById("bookmarklet").href = bookmarkhref;
+  var bookmarkhref = "javascript:(function(){%20var%20script=document.createElement('script');script.type='text/javascript';script.src=this.window.location.protocol+'//"+this.window.location.hostname+"/summarize-pad/summarize-pad.js';document.body.appendChild(script);})()"
 });
 </script>
 </html>

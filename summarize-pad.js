@@ -70,7 +70,7 @@ var summarizePad = (function() {
   var help = '<div id="help" style="display: none"> \
     <h2>Help</h2> \
     <p> \
-    A list must be uppercase with an underline, example : \
+    A list must be uppercase with an underline and without author colors, example : \
     <br /> \
     <u>LIST</u><br /> \
     <br /> \

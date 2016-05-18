@@ -8,7 +8,7 @@ The resulting summary can be clicked to navigate between the different tasks.
 
 You can also tag your tasks with different colors.
 
-![](http://bjperson.github.io/summarize-pad/thumb.png)
+[![screenshot](http://bjperson.github.io/summarize-pad/img/thumb.png "screenshot")](http://bjperson.github.io/summarize-pad/img/screenshot.png)
 
 ## How to install
 

@@ -4,7 +4,7 @@ If you have an heavy use of EtherPad then you may be interested.
 
 This tool is designed to live parse any EtherPad content to summarize it with simple rules.
 
-The resulting summary can be clicked to navigate between the different tasks.
+The resulting summary can be clicked to scroll to the different tasks.
 
 You can also tag your tasks with different colors.
 
@@ -22,7 +22,7 @@ Edit any bookmark already created by copy/paste the raw code of [this page](http
 
 ## How to use
 
-A comprehensive help is provided at the bottom of the Summarize-pad panel.
+A comprehensive help is provided inside the Summarize-pad panel.
 
 Of course, you must already be on a pad before clicking the bookmarklet.
 
@@ -32,7 +32,8 @@ Tested on :
 - https://pad.regardscitoyens.org/
 - https://framapad.org/
 - https://pad.lqdn.fr/
+- https://pad.fsfe.org/
 
 ## Whats next
 
-An extension for EtherPad Lite is expected soon. Stay tuned !
+A plugin for EtherPad Lite is expected soon. Stay tuned !

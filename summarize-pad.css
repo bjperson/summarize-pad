@@ -1,0 +1,48 @@
+#padassistant {
+	background-color: #fff;
+	border-left: 1px solid #dfdfdf;
+	font-size: 1.5em;
+	height: 100%;
+	overflow: auto;
+	position: absolute;
+	right: 0;
+	width: 30%;
+	z-index: 100;
+}
+#toggleassistant {
+	background-color: #e8e9e9;
+	border: 1px solid #dfdfdf;
+	color: #fff;
+	font-size: 2.5em;
+	font-weight: bold;
+	height: 32px;
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	width: 32px;
+	z-index: 101;
+	cursor:pointer;
+}
+.tasktype {
+	color:#000;
+	background-color:#e8e9e9;
+	padding:0.8em;
+	font-weight:bold;
+}
+.task {
+	border-bottom:1px solid #dfdfdf;
+	padding:0.3em;
+	cursor:pointer;
+}
+.task:hover {
+	background-color: #F2F7F7;
+}
+#help {
+	padding: 1em;
+	border-top: 1px solid #dfdfdf;
+}
+#help h1 {
+	font-weight: bold;
+	margin-bottom: 0.5em;
+}
